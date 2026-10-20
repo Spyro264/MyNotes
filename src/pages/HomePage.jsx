@@ -31,14 +31,14 @@ const HomePage = () => {
              One page per concept. A plain-language definition, runnable examples, the pitfalls people actually hit, and a quick check to make it stick.
            </p>
 
-           {/* <div className='flex flex-wrap gap-3'>
+           <div className='flex flex-wrap gap-3'>
              <Link to='/docs/js' className='flex items-center gap-2.5 min-h-13 px-5 rounded-xl bg-primary text-on-accent font-bold'>
                Start with JavaScript <ArrowIcon />
              </Link>
              <Link to='/docs/react' className='flex items-center min-h-13 px-5 rounded-xl border border-line2 font-bold'>
                Jump to React
              </Link>
-           </div> */}
+           </div>
 
         
        </div>
