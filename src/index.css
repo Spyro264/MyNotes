@@ -7,10 +7,44 @@
     --secondary-color: black;
     --font-sans: 'Schibsted Grotesk', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --bg: #0B0B0B;
+    --fg: #F4F4F2;
+    --fg2: #BDBDB8;
+    --accent-text: var(--primary-color);
+    --fg3: #8F8F8A;
+    --line2: #323232;
+    --on-accent: #0B0B0B;
+
+    /* code card stays dark in both themes */
+    --code-bg: #0E0E0E;
+    --code-line: #242424;
+    --code-border: #333333;
+    --code-chip: #1C1C1C;
+    --code-fg: #E9E9E6;
+    --code-muted: #BDBDB8;
+    --code-comment: #7F7F7A;
+    --code-strong: #FFFFFF;
+    --code-str: #F6CB9C;
+    --code-num: #FFB27A;
+}
+
+@media (prefers-color-scheme: light){
+    :root{
+        --bg: #FFFFFF;
+        --fg: #0B0B0B;
+        --fg2: #3D3D3A;
+        --accent-text: #B85813;
+        --fg3: #66665F;
+        --line2: #D5D4CF;
+        --code-bg: #111111;
+        --code-line: #111111;
+    }
 }
 
 body{
     font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--fg);
 }
 
 code, pre{
@@ -21,6 +55,23 @@ code, pre{
 @theme inline {
   --font-docs: var(--font-sans);
   --font-code: var(--font-mono);
+  --color-fg: var(--fg);
+  --color-fg2: var(--fg2);
+  --color-accent: var(--accent-text);
+  --color-primary: var(--primary-color);
+  --color-fg3: var(--fg3);
+  --color-line2: var(--line2);
+  --color-on-accent: var(--on-accent);
+  --color-code-bg: var(--code-bg);
+  --color-code-line: var(--code-line);
+  --color-code-border: var(--code-border);
+  --color-code-chip: var(--code-chip);
+  --color-code-fg: var(--code-fg);
+  --color-code-muted: var(--code-muted);
+  --color-code-comment: var(--code-comment);
+  --color-code-strong: var(--code-strong);
+  --color-code-str: var(--code-str);
+  --color-code-num: var(--code-num);
 }
 
 *{
