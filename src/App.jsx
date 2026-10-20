@@ -1,121 +1,52 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useCallback, useState } from 'react'
+import Navbar from './components/layout/Navbar'
+import Sidebar from './components/layout/Sidebar'
+import { getDoc, sections } from './lib/docs'
 
-function App() {
-  const [count, setCount] = useState(0)
+const firstItem = (sectionId) =>
+  sections.find((section) => section.id === sectionId)?.categories[0]?.items[0].id
+
+const App = () => {
+  const [activeSection, setActiveSection] = useState(sections[0]?.id)
+  const [activeItem, setActiveItem] = useState(firstItem(sections[0]?.id))
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
+
+  const changeSection = (id) => {
+    setActiveSection(id)
+    setActiveItem(firstItem(id))
+  }
+
+  const selectItem = (id) => {
+    setActiveItem(id)
+    setMenuOpen(false)
+  }
+
+  const activeName = getDoc(activeItem)?.name ?? 'No notes here yet'
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-dvh">
+      <Navbar onMenuClick={() => setMenuOpen(true)} />
 
-      <div className="ticks"></div>
+      <div className="flex items-start">
+        <Sidebar
+          sections={sections}
+          activeSection={activeSection}
+          onSectionChange={changeSection}
+          activeItem={activeItem}
+          onSelect={selectItem}
+          open={menuOpen}
+          onClose={closeMenu}
+        />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        {/* Placeholder until the doc page is built */}
+        <main className="min-w-0 flex-1 px-5 py-10 sm:px-10 lg:px-16">
+          <h1 className="text-4xl font-black tracking-tight sm:text-5xl">{activeName}</h1>
+          <p className="mt-4 text-fg2">Page content will render here.</p>
+        </main>
+      </div>
+    </div>
   )
 }
 
