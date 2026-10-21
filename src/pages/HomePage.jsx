@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import Navbar from '../components/navbar/Navbar'
 
 const popular = [
   { name: 'Closures', to: '/docs/js/closures' },
@@ -17,11 +18,16 @@ const ArrowIcon = () => (
 
 const HomePage = () => {
   return (
-    <div className='min-h-dvh border-2 border-amber-600 p-0 md:p-2'>
+    <div className='min-h-dvh border-2 border-amber-600 p-5 flex flex-col space-y-10 md:space-y-20'>
+
+      {/* {Navbar} */}
+      <div >
+        <Navbar />
+      </div>
        {/* {content} */}
-       <div className='flex flex-col  md:flex-row'>
+       <div className='flex flex-col  md:flex-row gap-y-10'>
         {/* {left-box} */}
-         <div className='md:w-1/2 flex flex-col gap-7'>
+         <div className='md:w-1/2 lg:w-[60%] lg:p-10 flex flex-col gap-7'>
          
            <h1 className='text-5xl lg:text-7xl leading-none tracking-tighter font-black text-fg'>
              Every JavaScript  & React concept, <span className='text-accent'>explained properly.</span>
@@ -43,8 +49,8 @@ const HomePage = () => {
         
        </div>
        {/* {right-box} */}
-        <div className='md:w-1/2'>
-          <div className='overflow-hidden rounded-2xl border border-code-line bg-code-bg text-code-fg'>
+        <div className='md:w-1/2 lg:w-[40%] flex flex-col justify-center'>
+          <div className='overflow-hidden  rounded-2xl border border-code-line bg-code-bg text-code-fg'>
             <div className='flex items-center justify-between gap-3 border-b border-code-line px-5 py-4'>
               <div className='flex flex-col gap-1'>
                 <span className='text-xs font-bold uppercase tracking-widest text-primary'>Concept of the day</span>
@@ -66,7 +72,7 @@ const HomePage = () => {
               <span className='px-3 py-2 text-sm text-code-muted'>Microtasks run before the next task.</span>
             </div>
 
-            <Link to='/docs/js/event-loop' className='flex items-center justify-between bg-primary  px-5 py-4 font-bold text-on-accent'>
+            <Link to='/docs/js' className='flex items-center justify-between bg-primary  px-5 py-4 font-bold text-on-accent'>
               <span>Read the concept</span>
               <ArrowIcon />
             </Link>

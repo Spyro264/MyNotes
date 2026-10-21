@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../components/navbar/Navbar'
 
 const DocLayout = () => {
   return (
-    <div>DocLayout</div>
+    <div className='px-5'>
+      <Navbar />
+    </div>
   )
 }
 
